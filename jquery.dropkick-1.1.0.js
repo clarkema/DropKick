@@ -164,7 +164,7 @@
             // Handle change events from select boxes after newly styled dropkick selects have been rendered
             $select.change(function(){
                 var $this = $(this);
-                var $selected = $dk.find('a[data-dk-dropdown-value=' + $this.val() + ']').parent().first();
+                var $selected = $dk.find('a[data-dk-dropdown-value="' + $this.val() + '"]').parent().first();
                 var label = $this.children('option').filter(':selected').text();
                 $dk.find('.dk_label').text(label);
                 _setCurrent($selected, $dk);
