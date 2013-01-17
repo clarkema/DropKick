@@ -169,6 +169,10 @@
                 $dk.find('.dk_label').text(label);
                 _setCurrent($selected, $dk);
             });
+
+            if (data.settings.ready) {
+                data.settings.ready.call($select);
+            }
         });
     };
 
