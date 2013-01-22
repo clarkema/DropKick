@@ -8,7 +8,7 @@
  */
 
 /* Container */
-.dk_theme_mytheme .dk_container {}
+.dk_theme_mytheme.dk_container {}
   .dk_theme_mytheme a {}
 
 /* Toggle */
