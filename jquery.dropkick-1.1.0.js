@@ -156,7 +156,11 @@
             setTimeout(function () {
                 $select.hide();
             }, 0);
-
+            
+            // Close if click doesn't come from within
+            $(document).bind('click.dk', function(event){
+                if(!$(event.target).closest($dk).length) $dk.dropkick('close');
+            });
             $.fn.dropkick.keySearchTimeout = setTimeout(function () {
                 $.fn.dropkick.searchStr = '';
             }, 500);
