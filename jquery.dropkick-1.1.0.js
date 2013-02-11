@@ -18,7 +18,7 @@
     var ie6 = false;
 
     // Help prevent flashes of unstyled content
-    if ($.browser.msie && $.browser.version.substr(0, 1) < 7) {
+    if ($.browser.msie && parseInt($.browser.version.split('.',1), 10) < 7) {
         ie6 = true;
     }
 
@@ -88,13 +88,14 @@
                 width = settings.width || $select.outerWidth(),
 
                 // Check if we have a tabindex set or not
-                tabindex = $select.attr('tabindex') ? $select.attr('tabindex') : '',
+                tabindex  = $select.attr('tabindex').toString(), // undefined/null will be parsed as zero by jQuery.
 
                 // The completed dk_container element
                 $dk = false,
 
                 theme
                 ;
+            tabindex  = (tabindex !== '-1') ? tabindex : ''
 
             // Dont do anything if we've already setup dropkick on this element
             if (data.loaded) {
@@ -156,7 +157,11 @@
             setTimeout(function () {
                 $select.hide();
             }, 0);
-
+            
+            // Close if click doesn't come from within
+            $(document).bind('click.dk', function(event){
+                if(!$(event.target).closest($dk).length) $dk.dropkick('close');
+            });
             $.fn.dropkick.keySearchTimeout = setTimeout(function () {
                 $.fn.dropkick.searchStr = '';
             }, 500);
